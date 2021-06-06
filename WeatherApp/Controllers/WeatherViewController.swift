@@ -60,13 +60,11 @@ extension WeatherViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         if let city = searchTextField.text {
             weatherManager.fetchWeather(cityName: city)
         }
         
         searchTextField.text = ""
-        
     }
 }
 
@@ -85,7 +83,11 @@ extension WeatherViewController: WeatherManagerDelegate {
     }
     
     func didFailWithError(error: Error) {
-        print(error)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: "We're sorry, but something went wrong. Please try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -108,6 +110,10 @@ extension WeatherViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: "We're sorry, but something went wrong. Please try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
