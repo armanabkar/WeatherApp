@@ -15,6 +15,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var loadingLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
@@ -32,6 +33,10 @@ class WeatherViewController: UIViewController {
         temperatureLabel.text = ""
         cityLabel.text = ""
         conditionImageView.image = .none
+        
+        let backView = UIView(frame: backgroundImage.bounds)
+        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        backgroundImage.addSubview(backView)
     }
     
 }
